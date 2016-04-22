@@ -1,33 +1,120 @@
-# Users field for Kirby 2
+# Kirby Users
 
-A simple checkbox field for Kirby CMS which lets you select users. All the users are shown except the users in the admin role. You can use this for authors on a blogpost or for user authentication.
+**Version 0.2**
+
+A checkbox field for Kirby CMS which lets you select users.With this field you can exclude users and roles from the options. All users are shown by default. You can use this for multiple authors on a blogpost.
 
 ## Installation
 
-### Download
-[Download the files](https://github.com/roylodder/kirby-users-field/archive/master.zip) and put them in a folder named `users`, inside the`site/fields` folder. If the fields folder doesn't exist, create it.
+1. Add `users` field folder into `/site/fields/`
 
-### With Git
-If you are familiar with Git, you can clone this repository from Github inside the <code>/site/fields</code> folder.
+## Setup
 
-    git clone https://github.com/roylodder/kirby-users-field.git users
+### Blueprint
 
-Or you can use it as a Git Submodule.
+Below is the most basic example.
 
-    git submodule add https://github.com/roylodder/kirby-users-field.git site/fields/users
+```md
+fields:
+  users:
+    label: Users
+    type: users
+```
 
-## How to use it
+### Default
 
-In your [blueprint](http://getkirby.com/docs/panel/blueprints) add the following field:
+If you want the selected user be `Bart` when it's created you can set a default value.
 
-    fields:
-      authors:
-        label: Authors
-        type: users
+```md
+fields:
+  users:
+    label: Users
+    default: bart
+    type: users
+```
 
-In your [template](http://getkirby.com/docs/templates) you can use the field like:
+### Exclude users
 
-    <?php echo $page->authors(); ?>
+If you want to hide a user from the options you can simply ignore them.
+
+```md
+fields:
+  users:
+    label: Users
+    type: users
+    exclude:
+      users:
+        admin
+```
+
+You also can exclude multiple users.
+
+```md
+fields:
+  users:
+    label: Users
+    type: users
+    exclude:
+      users:
+        admin
+        homer
+```
+
+### Exclude roles
+
+If you want to hide all users with a role you can simply ignore them.
+
+```md
+fields:
+  users:
+    label: Users
+    type: users
+    exclude:
+      roles:
+        admin
+```
+
+You also can exclude multiple roles.
+
+```md
+fields:
+  users:
+    label: Users
+    type: users
+    exclude:
+      roles:
+        admin
+        clients
+```
+
+### Exclude users and roles
+
+You can combine the excluding options for roles and users.
+
+```md
+fields:
+  users:
+    label: Users
+    type: users
+    exclude:
+      roles:
+        admin
+      users:
+        bart
+```
+
+# Changelog
+
+## 0.2
+
+- Removed excluding of users with the admin role.
+- Added option for excluding roles.
+- Added option for excluding users.
+- Added option for default selected user.
+
+## 0.1
+
+- Initial release
 
 ## Authors
 
