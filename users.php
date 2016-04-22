@@ -2,16 +2,13 @@
 
 class UsersField extends CheckboxesField {
 
-  public function __construct() {
-    $this->type    = 'checkboxes';
-    $this->options = array();
-
+  public function options() {
     foreach(kirby()->site()->users() as $user) {
-      if(!$user->hasRole('admin')) {
-        $this->options[$user->username()] = $user->username();
-      }
+      if (is_array($this->exclude['roles']) && in_array($user->role(), $this->exclude['roles'])) continue;
+      if (is_array($this->exclude['users']) && in_array($user->username(), $this->exclude['users'])) continue;
+        $options[$user->username()] =  $user;
     }
-
+    return $options;
   }
 
 }
