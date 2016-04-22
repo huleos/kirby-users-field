@@ -23,7 +23,7 @@ fields:
 
 ### Default
 
-If you want the selected user be `Bart` when it's created you can set a default value.
+If you want the selected user to be `Bart` when a page is created, you can set a default value.
 
 ```md
 fields:
@@ -60,7 +60,7 @@ fields:
         homer
 ```
 
-### Exclude user roles
+### Exclude roles
 
 If you want to hide all users with a role you can simply ignore them.
 
